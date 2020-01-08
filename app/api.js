@@ -35,5 +35,7 @@ authRoute.setup(server, serviceLocator);
 
 
 server.listen(config.port, () => {
-  logger.info(`${server.name} listening at ${config.port}`);
+  logger.info(`${config.app_name} listening at ${config.port}`);
 });
+
+module.exports = server;

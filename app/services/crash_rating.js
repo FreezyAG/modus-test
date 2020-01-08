@@ -14,7 +14,8 @@ class CrashRatingServices {
     this.logger = logger;
   }
 
-  getCrashRating (vehicleId) {
+  // eslint-disable-next-line class-methods-use-this
+  getCrashRating(vehicleId) {
     const options = {
       method: 'GET',
       uri: `${config.url.crash_rating_url}${vehicleId}?format=json`,
@@ -23,8 +24,8 @@ class CrashRatingServices {
       },
       json: true
     };
-      return rp(options);
+    return rp(options);
   }
-};
+}
 
 module.exports = CrashRatingServices;

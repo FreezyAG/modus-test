@@ -1,5 +1,5 @@
-const serviceLocator = require('../lib/service_locator');
 const winston = require('winston');
+const serviceLocator = require('../lib/service_locator');
 require('winston-daily-rotate-file');
 
 // Controllers
@@ -16,26 +16,25 @@ const VehicleServices = require('../services/vehicles');
  * Returns an instance of logger
  */
 serviceLocator.register('logger', () => {
-
-  const logger =  winston.createLogger({
+  const logger = winston.createLogger({
     level: 'info',
     format: winston.format.combine(
       winston.format.timestamp(),
       winston.format.json(),
-      ),
-  
-    defaultMeta: {service: 'modus-test'},
+    ),
+
+    defaultMeta: { service: 'modus-test' },
     transports: [
       new winston.transports.File({ filename: 'logs/error.log', level: 'error' }),
       new winston.transports.File({ filename: 'logs/info.log', level: 'info' })
-    
+
     ]
-  })
-  
+  });
+
   if (process.env.NODE_ENV !== 'production') {
     logger.add(new winston.transports.Console({
       format: winston.format.simple(),
-      
+
     }));
   }
   return logger;
@@ -45,7 +44,7 @@ serviceLocator.register('logger', () => {
  * Creates an instance of the Crash Rating Service
  */
 serviceLocator.register('crashRatingService', (servicelocator) => {
-  const logger = servicelocator.get('logger');;
+  const logger = servicelocator.get('logger');
   return new CrashRatingServices(logger);
 });
 
@@ -53,7 +52,7 @@ serviceLocator.register('crashRatingService', (servicelocator) => {
  * Creates an instance of the Vehicle Service
  */
 serviceLocator.register('vehicleService', (servicelocator) => {
-  const logger = servicelocator.get('logger');;
+  const logger = servicelocator.get('logger');
   return new VehicleServices(logger);
 });
 

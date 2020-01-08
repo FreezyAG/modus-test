@@ -15,7 +15,8 @@ class VehicleServices {
     this.logger = logger;
   }
 
-  getvehicleDescription (modelYear, manufacturer, model) {
+  // eslint-disable-next-line class-methods-use-this
+  getvehicleDescription(modelYear, manufacturer, model) {
     const options = {
       method: 'GET',
       uri: `${config.url.nhtsa}${modelYear}/make/${manufacturer}/model/${model}?format=json`,
@@ -24,8 +25,8 @@ class VehicleServices {
       },
       json: true
     };
-      return rp(options);
+    return rp(options);
   }
-};
+}
 
 module.exports = VehicleServices;

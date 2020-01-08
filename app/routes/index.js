@@ -4,10 +4,10 @@ module.exports.setup = function setup(server, serviceLocator) {
   const mainController = serviceLocator.get('mainController');
 
   // parse application/x-www-form-urlencoded
-  server.use(bodyParser.urlencoded({ extended: false }))
- 
+  server.use(bodyParser.urlencoded({ extended: false }));
+
   // parse application/json
-  server.use(bodyParser.json())
+  server.use(bodyParser.json());
 
   server.get({
     path: '/',
@@ -27,5 +27,4 @@ module.exports.setup = function setup(server, serviceLocator) {
     name: 'post vehicle data',
     version: '1.0.0'
   }, (req, res) => mainController.postVehicleData(req, res));
-
 };
