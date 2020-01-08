@@ -14,7 +14,7 @@ class CrashRatingController {
     async getCrashRatingAndData (modelYear, manufacturer, model) {
         const data = await this.vehicleService.getvehicleDescription(modelYear, manufacturer, model);
         const { Results, Count } = data;
-        return getDataAndLoop(Results, Count);
+        return this.getDataAndLoop(Results, Count);
     }
 
     async getDataAndLoop(Results, Count) {
