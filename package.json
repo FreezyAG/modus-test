@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app/api.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,15 @@
   "bugs": {
     "url": "https://github.com/wordaddict/modus-test/issues"
   },
-  "homepage": "https://github.com/wordaddict/modus-test#readme"
+  "homepage": "https://github.com/wordaddict/modus-test#readme",
+  "dependencies": {
+    "body-parser": "1.19.0",
+    "dotenv": "8.2.0",
+    "request": "2.88.0",
+    "request-promise": "4.2.5",
+    "restify": "8.5.1",
+    "restify-plugins": "1.6.0",
+    "winston": "3.2.1",
+    "winston-daily-rotate-file": "4.4.1"
+  }
 }

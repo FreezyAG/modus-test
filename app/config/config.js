@@ -5,6 +5,7 @@ require('dotenv').config();
 
 const config = {
     app_name,
+    port: process.env.PORT,
     url: {
         nhtsa: process.env.NHTSA_URL,
         crash_rating_url: process.env.NHTSA_CRASH_RATING_URL

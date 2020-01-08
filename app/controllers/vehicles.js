@@ -1,4 +1,4 @@
-const rp = require('request-promise');
+// const rp = require('request-promise');
 
 const getvehicleDescription = require('../services/vehicles.js');
 
@@ -14,7 +14,7 @@ class VehicleController {
     }
 
     getVehicleData (modelYear, manufacturer, model) {
-        return getvehicleDescription(modelYear, manufacturer, model)
+        return this.vehicleService.getvehicleDescription(modelYear, manufacturer, model)
             .then((data) => {
                 const { Results, Count } = data;
                 if ( Results.length === 0) {

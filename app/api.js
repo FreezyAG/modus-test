@@ -16,13 +16,8 @@ const logger = serviceLocator.get('logger');
 const server = restify.createServer({
   name: config.app_name,
   versions: ['1.0.0'],
+  port: config.port
 });
-
-// Connect to Mongo
-serviceLocator.get('mongo');
-
-// Connect to redis
-serviceLocator.get('redis');
 
 // set API versioning and allow trailing slashes
 server.pre(restify.pre.sanitizePath());
@@ -39,6 +34,6 @@ authRoute.setup(server, serviceLocator);
 // setup Routing and Error Event Handling
 
 
-server.listen(config.server.port, () => {
-  logger.info(`${server.name} listening at ${server.url}`);
+server.listen(config.port, () => {
+  logger.info(`${server.name} listening at ${config.port}`);
 });

@@ -16,7 +16,7 @@ class CrashRatingController {
     }
 
     getCrashRatingAndData (modelYear, manufacturer, model) {
-        return getvehicleDescription(modelYear, manufacturer, model)
+        return this.vehicleService.getvehicleDescription(modelYear, manufacturer, model)
             .then((data) => {
                 const { Results, Count } = data;
                 return getDataAndLoop(Results, Count);
@@ -35,7 +35,7 @@ class CrashRatingController {
         let dataObj = {};
         for (let i = 0; i < Results.length; i++) {
             vehicleId = Results[i].VehicleId
-            await getCrashRating(vehicleId)
+            await this.crashRatingService.getCrashRating(vehicleId)
                 .then((res) => {
                     const rating = res.Results[0].OverallRating;
                     dataObj = {

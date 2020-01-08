@@ -9,8 +9,6 @@ module.exports.setup = function setup(server, serviceLocator) {
   // parse application/json
   server.use(bodyParser.json())
 
-  // router.get('/vehicles/:modelYear/:manufacturer/:model', (req, res) => {
-    // router.post('/vehicles', (req, res) => {
   server.get({
     path: '/',
     name: 'app health check',
@@ -19,14 +17,14 @@ module.exports.setup = function setup(server, serviceLocator) {
 
   server.get({
     path: '/vehicles/:modelYear/:manufacturer/:model',
-    name: 'Login a user ',
+    name: 'Get vehicle data',
     version: '1.0.0'
-  }, checkToken, (req, res) => mainController.getVehicleRecords(req, res));
+  }, (req, res) => mainController.getVehicleRecords(req, res));
 
   // create customer
   server.post({
     path: '/vehicles',
-    name: 'creates a new customer',
+    name: 'post vehicle data',
     version: '1.0.0'
   }, (req, res) => mainController.postVehicleData(req, res));
 

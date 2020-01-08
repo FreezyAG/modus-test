@@ -4,12 +4,6 @@ const rp = require('request-promise');
 
 const config = require('../config/config.js');
 
-require('dotenv').config();
-
-const rp = require('request-promise');
-
-const config = require('../config/config.js');
-
 class VehicleServices {
   /**
    * The constructor
