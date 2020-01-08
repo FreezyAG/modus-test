@@ -1,7 +1,3 @@
-
-const getCrashRating = require('../services/crash_rating');
-const getvehicleDescription = require('../services/vehicles.js');
-
 class CrashRatingController {
     /**
      * Class Constructor
@@ -15,12 +11,10 @@ class CrashRatingController {
       this.crashRatingService = crashRatingService;
     }
 
-    getCrashRatingAndData (modelYear, manufacturer, model) {
-        return this.vehicleService.getvehicleDescription(modelYear, manufacturer, model)
-            .then((data) => {
-                const { Results, Count } = data;
-                return getDataAndLoop(Results, Count);
-            });
+    async getCrashRatingAndData (modelYear, manufacturer, model) {
+        const data = await this.vehicleService.getvehicleDescription(modelYear, manufacturer, model);
+        const { Results, Count } = data;
+        return getDataAndLoop(Results, Count);
     }
 
     async getDataAndLoop(Results, Count) {
@@ -35,16 +29,15 @@ class CrashRatingController {
         let dataObj = {};
         for (let i = 0; i < Results.length; i++) {
             vehicleId = Results[i].VehicleId
-            await this.crashRatingService.getCrashRating(vehicleId)
-                .then((res) => {
-                    const rating = res.Results[0].OverallRating;
-                    dataObj = {
-                        CrashRating: rating,
-                        Description: Results[i].VehicleDescription,
-                        VehicleId: Results[i].VehicleId
-                    }
-                    resultArray.push(dataObj);
-                })
+            const res = await this.crashRatingService.getCrashRating(vehicleId);
+            const rating = res.Results[0].OverallRating;
+            dataObj = {
+                CrashRating: rating,
+                Description: Results[i].VehicleDescription,
+                VehicleId: Results[i].VehicleId
+            }
+            resultArray.push(dataObj);
+           
         }
         return {
             Results: resultArray,
